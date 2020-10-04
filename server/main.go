@@ -1,0 +1,17 @@
+package main
+
+import (
+	"net/http"
+	"github.com/rs/cors"
+)
+
+func main() {
+	mux := http.NewServerMux()
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte("{\"hello": \"workd\"}"))
+	})
+
+	handler := cors.Default().Handler(mux)
+	http.ListentAndServe(":8080", handler)
+}
