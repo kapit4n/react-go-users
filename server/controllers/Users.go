@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"models"
+	"server/models"
 )
 
 func FindUsers(c *gin.Context) {
