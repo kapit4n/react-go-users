@@ -5,8 +5,8 @@ import (
 	"github.com/rs/cors"
 	"github.com/gin-gonic/gin"
 
-	"models"
-	"controllers"
+	"server/models"
+	"server/controllers"
 )
 
 func main() {
