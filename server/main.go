@@ -1,12 +1,10 @@
 package main
 
 import (
-	"net/http"
-	"github.com/rs/cors"
 	"github.com/gin-gonic/gin"
 
-	"server/models"
 	"server/controllers"
+	"server/models"
 )
 
 func main() {
@@ -16,5 +14,5 @@ func main() {
 
 	r.GET("/users", controllers.FindUsers)
 
-	r.Run()
+	r.Run(":8080")
 }
