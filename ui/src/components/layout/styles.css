@@ -1,0 +1,21 @@
+.navigation {
+  list-style-type: none;
+  display: flex;
+  background-color: black;
+}
+
+.navigation > li {
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+.navigation > li:hover {
+  padding: 1rem;
+  border: 1px solid black;
+  background-color: gray;
+}
+
+.navigation a {
+  color: white;
+  text-decoration: none;
+}

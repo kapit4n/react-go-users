@@ -1,13 +1,26 @@
 import React from 'react';
 import './App.css';
-import Users from './components/users'
+import Layout from './components/layout'
+import Users from './pages/users'
+import About from './pages/about'
+import Home from './pages/home'
 
-function App() {
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
+export default function () {
   return (
-    <div className="App">
-      <Users />
-    </div>
+    <BrowserRouter>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Layout>
+  </BrowserRouter>
   );
 }
-
-export default App;
