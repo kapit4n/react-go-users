@@ -17,6 +17,7 @@ func main() {
 	r.GET("/users", controllers.FindUsers)
 	r.POST("/users", controllers.CreateUser)
 	r.POST("/login", controllers.Login)
+	r.GET("/logout", controllers.Logout)
 
 	r.Run(":8080")
 }
