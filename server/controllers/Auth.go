@@ -3,14 +3,21 @@ package controllers
 import (
 	"fmt"
 	"net/http"
+	"server/models"
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 )
 
 const (
 	sessionkey = "user"
 )
+
+func CheckPasswordHash(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
+}
 
 type LoginRequest struct {
 	Email    string `json:"email" binding:"required"`
@@ -19,12 +26,24 @@ type LoginRequest struct {
 
 func Login(c *gin.Context) {
 	session := sessions.Default(c)
+	var user models.User
+
 	var loginRequest LoginRequest
 	c.BindJSON(&loginRequest)
 
 	fmt.Println(loginRequest)
+	if err := models.DB.Where("email = ?", loginRequest.Email).First(&user).Error; err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
+		return
+	}
+	if passwordValid := CheckPasswordHash(loginRequest.Password, user.Password); !passwordValid {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
+		return
+	}
 
-	session.Set(sessionkey, "User info")
+	user.Password = ""
+
+	session.Set(sessionkey, user)
 	session.Save()
 	c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
 }

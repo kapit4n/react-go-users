@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 	"server/models"
 
 	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func FindUsers(c *gin.Context) {
@@ -15,11 +15,18 @@ func FindUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": users})
 }
 
+func HashPassword(password string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	return string(bytes), err
+}
+
 func CreateUser(c *gin.Context) {
 	var user models.User
 	c.BindJSON(&user)
+	hashedPassword, _ := HashPassword(user.Password)
+	user.Password = hashedPassword
 	models.DB.Save(&user)
-	fmt.Println(user)
+	user.Password = ""
 
 	c.JSON(http.StatusOK, gin.H{"data": user})
 }
