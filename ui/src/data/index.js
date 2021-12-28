@@ -11,8 +11,8 @@ const permissions = [
 ]
 
 const roles = [
-  { name: 'Admin', description: "Have full access to the system" },
-  { name: 'Software Engineer', description: 'Have access to tasks' }]
+  { id: 1, name: 'Admin', description: "Have full access to the system" },
+  { id: 2, name: 'Software Engineer', description: 'Have access to tasks' }]
 
 const data = { users, permissions, roles }
 export default data;
