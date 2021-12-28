@@ -20,6 +20,6 @@ export default function Index() {
   const data = React.useMemo(() => Data.roles)
 
 return (
-  <Roles columns={columns} data={data} />
+  <Roles columns={columns} data={data}/>
 )
 }
