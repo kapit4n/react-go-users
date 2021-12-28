@@ -14,6 +14,12 @@ const Navigation = () => {
         <Link to="/users">Users</Link>
       </li>
       <li>
+        <Link to="/permissions">Permissions</Link>
+      </li>
+      <li>
+        <Link to="/roles">Roles</Link>
+      </li>
+      <li>
         <Link to="/about">About</Link>
       </li>
     </ul>
