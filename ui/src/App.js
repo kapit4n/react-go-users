@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Layout from './components/layout'
 import Users from './pages/users'
+import UsersCreate from './pages/users/create'
 import Roles from './pages/roles'
 import Permissions from './pages/permissions'
 import About from './pages/about'
@@ -20,6 +21,7 @@ export default function () {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/users/create" element={<UsersCreate />} />
         <Route path="/roles" element={<Roles />} />
         <Route path="/permissions" element={<Permissions />} />
         <Route path="/about" element={<About />} />

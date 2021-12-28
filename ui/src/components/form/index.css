@@ -1,0 +1,20 @@
+form {
+  max-width: 40rem;
+  width: 100%;
+}
+
+.input-group {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  color: gray;
+}
+
+.input-group input {
+  height: 2rem;
+}
