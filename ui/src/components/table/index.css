@@ -32,6 +32,7 @@ th {
 .main-header {
   display: flex;
   justify-content: space-between;
+  background-color: black;
 }
 
 .header-chip {
@@ -41,6 +42,7 @@ th {
 
 .white-button {
   background-color: transparent;
+  color: white;
 }
 
 .primary-button {

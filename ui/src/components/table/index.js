@@ -27,7 +27,7 @@ export default function Index({ columns, data, model, addLabel, addRoute }) {
               <div className="main-header">
                 <div style={{ textTransform: 'none', padding: '1rem' }}>
                   <span className={"header-chip"}>{model} :</span>
-                  <span className={"header-chip"}>13.22r Total</span>
+                  <span className={"header-chip"}>12.000 Total</span>
                   <span className={"header-chip"}>Sort By: Date Created</span>
                 </div>
                 <div>
