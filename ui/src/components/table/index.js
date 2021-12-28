@@ -22,7 +22,7 @@ export default function Index({ columns, data, model, addLabel }) {
       <table {...getTableProps()}>
         <thead>
           <tr>
-            <th colSpan={2}>
+            <th colSpan={10}>
               <div className="main-header">
                 <div style={{ textTransform: 'none', padding: '1rem' }}>
                   <span className={"header-chip"}>{model} :</span>

@@ -1,5 +1,6 @@
 import React from 'react'
 import Users from '../../components/users/index'
+import Data from '../../data'
 
 export default function Index() {
 
@@ -16,7 +17,7 @@ export default function Index() {
     ]
   )
 
-  const data = React.useMemo(() => ([{ fullName: 'Luis Arce', role: 'Admin' }, { fullName: 'Daniel Ruiz', role: 'Software developer' }]))
+  const data = React.useMemo(() => Data.users)
   
   return (
     <Users columns={columns} data={data} />

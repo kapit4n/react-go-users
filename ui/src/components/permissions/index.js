@@ -1,24 +1,8 @@
 import React from 'react'
+import Table from '../table'
 
-export default function Index({ users }) {
+export default function Index({ columns, data }) {
   return (
-    <div>
-      Permissions List
-      <button>add</button>
-      <table>
-        <tr>
-          <td>Name</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Create</td>
-          <td>
-            <button>edit</button>
-            <button>delete</button>
-            <button>inactive</button>
-          </td>
-        </tr>
-      </table>
-    </div>
+  <Table columns={columns} data={data} addLabel={"Add Permission"} model={"Permissions"} />
   )
 }
