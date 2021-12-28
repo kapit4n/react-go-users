@@ -7,12 +7,16 @@ export default function Index() {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Full Name",
-        accessor: 'fullName'
+        Header: "First Name",
+        accessor: 'firstName'
       },
       {
-        Header: "Role",
-        accessor: 'role'
+        Header: "Last Name",
+        accessor: 'lastName'
+      },
+      {
+        Header: "Email",
+        accessor: 'email'
       }
     ]
   )

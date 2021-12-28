@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import './index.css'
 
-export default function Index({ columns, data, model, addLabel, addRoute }) {
+export default function Index({ columns, data, model, addLabel, addRoute, editRoute, onDelete }) {
 
   const {
     getTableProps,
@@ -48,17 +48,25 @@ export default function Index({ columns, data, model, addLabel, addRoute }) {
                   {...column.getHeaderProps()}>{column.render('Header')}
                 </th>
               ))}
+              <th>ACTIONS</th>
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
           {rows.map((row, i) => {
+            console.log(row)
             prepareRow(row)
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map(cell => {
                   return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
+                <td>
+                  <Link to={editRoute + row.original.id}>
+                    <button>Edit</button>
+                  </Link>
+                  <button>Delete</button>
+                </td>
               </tr>
             )
           })}
