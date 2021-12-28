@@ -10,10 +10,7 @@ const Edit = () => {
   const [editData, setEditData] = useState()
 
   useEffect(() => {
-    console.log(id)
-    console.log(Data.users)
     const res = Data.users.find(x => x.id == id)
-    console.log(res)
     setEditData(res)
   }, [id])
 

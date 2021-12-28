@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import CommonFields from './common-fields'
 
 import './create.css'
 
@@ -19,22 +20,7 @@ export default function Create() {
     <div className="container">
       <h1>CREATE NEW USER</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput>
-          <label for="firtName">First Name</label>
-          <input {...register("firstName", {required: "Please enter your first name."})}/>
-        </FormInput>
-        <FormInput>
-          <label for="lastName">Last Name</label>
-          <input {...register("lastName")}/>
-        </FormInput>
-        <FormInput>
-          <label for="email">Email</label>
-          <input {...register("email", {required: "Please enter your Email."})} type="email"/>
-        </FormInput>
-        <FormInput>
-          <label for="password">Password</label>
-          <input {...register("password", {required: "Please enter your Password."})} type="password"/>
-        </FormInput>
+        <CommonFields register={register}/>
       </Form>
     </div>
   )
