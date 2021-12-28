@@ -1,7 +1,7 @@
 
 const users = [
-  { id: 1, firstName: 'Luis', lastName: 'Arce', role: 'Admin' },
-  { id: 2, firstName: 'Daniel', lastName: 'Ruiz', role: 'Software developer' }]
+  { id: 1, firstName: 'Luis', lastName: 'Arce', role: 'Admin', email: 'luis@gmail.com' },
+  { id: 2, firstName: 'Daniel', lastName: 'Ruiz', role: 'Software developer', email: 'daniel@gmail.com' }]
 
 const permissions = [
   { name: 'Create User', model: "users", action: "create" },
