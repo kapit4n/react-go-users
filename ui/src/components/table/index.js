@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { useTable } from 'react-table'
+import { Link } from 'react-router-dom'
 
 import './index.css'
 
-export default function Index({ columns, data, model, addLabel }) {
+export default function Index({ columns, data, model, addLabel, addRoute }) {
 
   const {
     getTableProps,
@@ -32,7 +33,9 @@ export default function Index({ columns, data, model, addLabel }) {
                 <div>
                   <button className={"white-button"}>List</button>
                   <button className={"white-button"}>Filter --</button>
-                  <button className={"primary-button"}>{addLabel}</button>
+                  <Link to={addRoute}>
+                    <button className={"primary-button"}> {addLabel}</button>
+                  </Link>
                   <button className={"primary-button"}>...</button>
                 </div>
               </div>

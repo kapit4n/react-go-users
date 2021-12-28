@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import './create.css'
 
@@ -7,8 +8,11 @@ import Form, { FormInput } from '../form'
 
 export default function Create() {
   const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true });
+  let navigate = useNavigate();
+
   const onSubmit = async data => {
     console.log(data)
+    navigate("/users", { replace: true });
   };
 
   return (
