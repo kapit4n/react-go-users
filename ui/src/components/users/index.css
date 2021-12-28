@@ -1,0 +1,57 @@
+table {
+  border-spacing: 0;
+  border: 1px solid black;
+  width: 100%;
+
+}
+tr:last-child td {
+  border-bottom: 0;
+}
+
+th, td {
+  margin: 0;
+  padding: 0.5rem;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+th:last-child, td:last-child {
+  border-right: 0;
+}
+
+th {
+  text-transform: uppercase;
+}
+
+.add {
+  margin-left: 1rem;
+  float: right;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-chip {
+  color: grey;
+  margin: 0 0.5rem;
+}
+
+.white-button {
+  background-color: transparent;
+}
+
+.primary-button {
+  background-color: skyblue;
+}
+
+button {
+  margin: 0.3rem 0.5rem;
+  border: none;
+  padding: 0.5rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
