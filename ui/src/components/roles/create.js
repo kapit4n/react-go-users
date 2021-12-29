@@ -7,12 +7,12 @@ import './create.css'
 
 import Form from '../form'
 
-export default function Create() {
+export default function Create({ onCreate }) {
   const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true });
   let navigate = useNavigate();
 
   const onSubmit = async data => {
-    console.log(data)
+    onCreate(data)
     navigate("/roles", { replace: true });
   };
 
@@ -20,7 +20,7 @@ export default function Create() {
     <div className="container">
       <h1>CREATE NEW ROLE</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <CommonFields register={register}/>
+        <CommonFields register={register} />
       </Form>
     </div>
   )

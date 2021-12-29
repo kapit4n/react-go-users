@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+
 import Roles from '../../components/roles/index'
-import Data from '../../data'
 
 export default function Index() {
 
@@ -16,10 +17,15 @@ export default function Index() {
       }
     ]
   )
+  
+  const [data, setData] = useState([])
+  
+  useEffect(async () => {
+    const roles = await axios.get(`${process.env.REACT_APP_API_URL}/roles`)
+    setData(roles.data.data)
+  }, [])
 
-  const data = React.useMemo(() => Data.roles)
-
-return (
-  <Roles columns={columns} data={data}/>
-)
+  return (
+    <Roles columns={columns} data={data} />
+  )
 }
