@@ -7,14 +7,28 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func FindPermissions(c *gin.Context) {
+func PermissionsList(c *gin.Context) {
 	var permissions []models.Permission
 	models.DB.Find(&permissions)
 
 	c.JSON(http.StatusOK, gin.H{"data": permissions})
 }
 
-func CreatePermission(c *gin.Context) {
+func PermissionsDetails(c *gin.Context) {
+	var permission models.Permission
+	id := c.Param("id")
+
+	err := models.DB.Find(&permission, id).Error
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Error to get the permission"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": permission})
+}
+
+func PermissionCreate(c *gin.Context) {
 	var permission models.Permission
 	c.BindJSON(&permission)
 	models.DB.Save(&permission)
