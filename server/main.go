@@ -12,7 +12,7 @@ import (
 func main() {
 	r := gin.Default()
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:3000"}
+	config.AllowOrigins = []string{"*"}
 
 	r.Use(cors.New(config))
 	r.Use(sessions.Sessions("mysession", sessions.NewCookieStore([]byte("secret"))))
@@ -32,6 +32,7 @@ func main() {
 	r.GET("/users", controllers.UsersList)
 	r.GET("/users/:id", controllers.UsersDetails)
 	r.POST("/users", controllers.UsersCreate)
+	r.PUT("/users/:id", controllers.UsersUpdate)
 	r.GET("/users/count", controllers.UsersCount)
 
 	r.GET("/summary/count", controllers.CountAll)

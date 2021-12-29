@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 	"server/models"
 
@@ -29,7 +30,49 @@ func UsersDetails(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": user})
 }
 
+func UsersUpdate(c *gin.Context) {
+	fmt.Println("ERROR")
+	var user models.User
+	var userToUpdate models.User
+	id := c.Param("id")
+
+	if err := c.BindJSON(&userToUpdate); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request"})
+		return
+	}
+
+	if err := models.DB.Find(&user, id).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Error to get the user"})
+		return
+	}
+
+	if &userToUpdate.Email != nil {
+		user.Email = userToUpdate.Email
+	}
+
+	if &userToUpdate.FirstName != nil {
+		user.FirstName = userToUpdate.FirstName
+	}
+
+	if &userToUpdate.LastName != nil {
+		user.LastName = userToUpdate.LastName
+	}
+
+	if &userToUpdate.Password != nil {
+		hashedPassword, _ := HashPassword(userToUpdate.Password)
+		user.Password = hashedPassword
+	}
+
+	if err := models.DB.Save(&user).Error; err != nil {
+		c.JSON(http.StatusOK, gin.H{"error": "Error to update"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": user})
+}
+
 func HashPassword(password string) (string, error) {
+	fmt.Println(password)
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	return string(bytes), err
 }
