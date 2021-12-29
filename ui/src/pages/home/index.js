@@ -1,13 +1,18 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import axios from 'axios'
 
 import Home from '../../components/home'
 
-import Data from '../../data'
-
 export default function() {
 
-  
+  const [summaryCount, setSummaryCount] = useState({});
+
+  useEffect(async () => {
+    const summaryCountResp =  await axios.get(`${process.env.REACT_APP_API_URL}/summary/count`)
+    setSummaryCount(summaryCountResp.data)
+  })
+
   return (
-    <Home usersCount={Data.users.length} rolesCount={Data.roles.length} permissionsCount={Data.permissions.length} />
+    <Home usersCount={summaryCount.users} rolesCount={summaryCount.roles} permissionsCount={summaryCount.permissions} />
   )
 }
