@@ -7,7 +7,7 @@ const Create = () => {
 
   const onCreate = useCallback(
     async (data) => {
-      const created = await axios.post(`${process.env.REACT_APP_API_URL}/roles`, data)
+      await axios.post(`${process.env.REACT_APP_API_URL}/roles`, data)
     },
   )
 

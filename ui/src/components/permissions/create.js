@@ -7,12 +7,12 @@ import './create.css'
 
 import Form from '../form'
 
-export default function Create() {
+export default function Create({onCreate}) {
   const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true });
   let navigate = useNavigate();
 
   const onSubmit = async data => {
-    console.log(data)
+    onCreate(data)
     navigate("/permissions", { replace: true });
   };
 

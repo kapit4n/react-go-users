@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Permissions from '../../components/permissions/index'
-import Data from '../../data'
+import axios from 'axios'
 
 export default function Index() {
 
@@ -20,9 +20,12 @@ export default function Index() {
       },
     ]
   )
-
-  const data = React.useMemo(() => Data.permissions)
-
+  const [data, setData] = useState([])
+  
+  useEffect(async () => {
+    const permission = await axios.get(`${process.env.REACT_APP_API_URL}/permissions`)
+    setData(permission.data.data)
+  }, [])
 
   return (
     <Permissions data={data} columns={columns} />
