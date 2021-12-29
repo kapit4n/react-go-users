@@ -21,6 +21,7 @@ func main() {
 
 	r.GET("/roles", controllers.RolesList)
 	r.POST("/roles", controllers.RolesCreate)
+	r.GET("/roles/:id", controllers.RolesDetails)
 	r.GET("/roles/count", controllers.RolesCount)
 
 	r.GET("/permissions", controllers.PermissionsList)
