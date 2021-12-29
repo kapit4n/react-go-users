@@ -1,24 +1,27 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import CommonFields from './common-fields'
 
 import './create.css'
 
 import Form from '../form'
+import CommonFields from './common-fields'
 
-export default function Create() {
-  const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true });
+export default function Edit({data}) {
+  const { register, handleSubmit, reset } = useForm({ shouldUseNativeValidation: true, defaultValues: data });
   let navigate = useNavigate();
 
   const onSubmit = async data => {
-    console.log(data)
     navigate("/permissions", { replace: true });
   };
 
+  useEffect(() => {
+    reset(data)
+  }, [data])
+
   return (
     <div className="container">
-      <h1>CREATE NEW PERMISSION</h1>
+      <h1>EDIT PERMISSION</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <CommonFields register={register}/>
       </Form>

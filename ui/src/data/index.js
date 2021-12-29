@@ -4,10 +4,10 @@ const users = [
   { id: 2, firstName: 'Daniel', lastName: 'Ruiz', role: 'Software developer', email: 'daniel@gmail.com' }]
 
 const permissions = [
-  { name: 'Create User', model: "users", action: "create" },
-  { name: 'Update User', model: "users", action: "update" },
-  { name: 'Delete User', model: "users", action: "delete" },
-  { name: 'Read User', model: "users", action: "read" },
+  { id: 1, name: 'Create User', model: "users", action: "create" },
+  { id: 2, name: 'Update User', model: "users", action: "update" },
+  { id: 3, name: 'Delete User', model: "users", action: "delete" },
+  { id: 4, name: 'Read User', model: "users", action: "read" },
 ]
 
 const roles = [
