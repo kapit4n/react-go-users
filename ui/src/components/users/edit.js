@@ -7,13 +7,12 @@ import './create.css'
 import Form, { FormInput } from '../form'
 import CommonFields from './common-fields'
 
-export default function Edit({data}) {
-  console.log(data)
+export default function Edit({data, onUpdate}) {
   const { register, handleSubmit, reset } = useForm({ shouldUseNativeValidation: true, defaultValues: data });
   let navigate = useNavigate();
 
   const onSubmit = async data => {
-    console.log(data)
+    await onUpdate(data)
     navigate("/users", { replace: true });
   };
 

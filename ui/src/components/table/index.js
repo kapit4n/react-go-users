@@ -65,7 +65,6 @@ export default function Index({ columns, data, model, addLabel, addRoute, editRo
       </thead>
       <tbody {...getTableBodyProps()}>
         {rows.map((row, i) => {
-          console.log(row)
           prepareRow(row)
           return (
             <tr {...row.getRowProps()}>
