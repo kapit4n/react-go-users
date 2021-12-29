@@ -32,10 +32,12 @@ func Login(c *gin.Context) {
 	c.BindJSON(&loginRequest)
 
 	fmt.Println(loginRequest)
+
 	if err := models.DB.Where("email = ?", loginRequest.Email).First(&user).Error; err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
 		return
 	}
+
 	if passwordValid := CheckPasswordHash(loginRequest.Password, user.Password); !passwordValid {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
 		return
