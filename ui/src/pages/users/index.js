@@ -1,17 +1,8 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Users from '../../components/users/index'
-import Data from '../../data'
+import axios from 'axios'
 
 export default function Index() {
-
-
-  // TODO, integrate this with api
-  const onDelete = useCallback(async (id) => {
-    setDeletedIds(x => [...x, id])
-  })
-
-  const [deletedIds, setDeletedIds] = useState([]);
-
   const columns = React.useMemo(
     () => [
       {
@@ -29,8 +20,16 @@ export default function Index() {
     ]
   )
 
-  // integrate this with a useEffect to pull data from server
-  const data = React.useMemo(() => Data.users.filter(u => !deletedIds.includes(u.id)), [deletedIds])
+  const [data, setData] = useState([])
+
+  useEffect(async () => {
+    const users = await axios.get(`${process.env.REACT_APP_API_URL}/users`)
+    setData(users.data.data)
+  }, [])
+
+  const onDelete = useCallback(async (id) => {
+    axios.delete(`${process.env.REACT_APP_API_URL}/users`, id)
+  })
 
   return (
     <Users columns={columns} data={data} onDelete={onDelete} />
