@@ -6,11 +6,11 @@ const CommonFields = ({register}) => {
   return (
     <>
      <FormInput>
-          <label for="name">Name</label>
+          <label htmlFor="name">Name</label>
           <input {...register("name", {required: "Please enter role name."})}/>
         </FormInput>
         <FormInput>
-          <label for="description">Description</label>
+          <label htmlFor="description">Description</label>
           <input {...register("description")}/>
         </FormInput>
     </>
