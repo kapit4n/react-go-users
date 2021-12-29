@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 
@@ -10,6 +11,10 @@ import (
 
 func main() {
 	r := gin.Default()
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:3000"}
+
+	r.Use(cors.New(config))
 	r.Use(sessions.Sessions("mysession", sessions.NewCookieStore([]byte("secret"))))
 
 	models.ConnectionDataBase()
