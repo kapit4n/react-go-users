@@ -30,3 +30,13 @@ func CreateUser(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": user})
 }
+
+func UsersCountFunc(c *gin.Context) int {
+	var count int
+	models.DB.Model(&models.User{}).Count(&count)
+	return count
+}
+
+func UsersCount(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"count": UsersCountFunc(c)})
+}

@@ -21,3 +21,13 @@ func CreatePermission(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": permission})
 }
+
+func PermissionsCountFunc(c *gin.Context) int {
+	var count int
+	models.DB.Model(&models.Permission{}).Count(&count)
+	return count
+}
+
+func PermissionsCount(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"count": PermissionsCountFunc(c)})
+}
