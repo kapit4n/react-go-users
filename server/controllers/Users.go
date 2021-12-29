@@ -8,11 +8,25 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func FindUsers(c *gin.Context) {
+func UsersList(c *gin.Context) {
 	var users []models.User
 	models.DB.Find(&users)
 
 	c.JSON(http.StatusOK, gin.H{"data": users})
+}
+
+func UsersDetails(c *gin.Context) {
+	var user models.User
+	id := c.Param("id")
+
+	err := models.DB.Find(&user, id).Error
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Error to get the user"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": user})
 }
 
 func HashPassword(password string) (string, error) {
@@ -20,7 +34,7 @@ func HashPassword(password string) (string, error) {
 	return string(bytes), err
 }
 
-func CreateUser(c *gin.Context) {
+func UsersCreate(c *gin.Context) {
 	var user models.User
 	c.BindJSON(&user)
 	hashedPassword, _ := HashPassword(user.Password)

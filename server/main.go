@@ -29,8 +29,9 @@ func main() {
 	r.GET("/permissions/:id", controllers.PermissionsDetails)
 	r.GET("/permissions/count", controllers.PermissionsCount)
 
-	r.GET("/users", controllers.FindUsers)
-	r.POST("/users", controllers.CreateUser)
+	r.GET("/users", controllers.UsersList)
+	r.GET("/users/:id", controllers.UsersDetails)
+	r.POST("/users", controllers.UsersCreate)
 	r.GET("/users/count", controllers.UsersCount)
 
 	r.GET("/summary/count", controllers.CountAll)
