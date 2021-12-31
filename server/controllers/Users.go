@@ -22,6 +22,8 @@ func UsersDetails(c *gin.Context) {
 
 	err := models.DB.Find(&user, id).Error
 
+	user.Password = ""
+
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Error to get the user"})
 		return

@@ -17,4 +17,13 @@ form {
 
 .input-group input {
   height: 2rem;
+  padding: 0 0.5rem;
+}
+
+.input-group textarea {
+  padding: 0.5rem;
+}
+
+.actions {
+  padding: 0 0.5rem;
 }

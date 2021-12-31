@@ -14,7 +14,7 @@ const Index = ({ children, ...props }) => {
   return (
     <form className="form" {...props}>
       {children}
-      <div className="actions`">
+      <div className="actions">
         <button className="primary-button" type="submit">SAVE</button>
         <button>CANCEL</button>
       </div>

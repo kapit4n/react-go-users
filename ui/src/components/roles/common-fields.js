@@ -11,7 +11,7 @@ const CommonFields = ({register}) => {
         </FormInput>
         <FormInput>
           <label htmlFor="description">Description</label>
-          <input {...register("description")}/>
+          <textarea {...register("description")} rows="4"/>
         </FormInput>
     </>
   )
