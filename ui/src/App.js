@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Layout from './components/layout'
 import Users from './pages/users'
+import UsersDetails from './pages/users/details'
 import UsersCreate from './pages/users/create'
 import RolesCreate from './pages/roles/create'
 import RolesEdit from './pages/roles/edit'
@@ -30,6 +31,7 @@ export default function () {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/users/:id" element={<UsersDetails />} />
             <Route path="/users/create" element={<UsersCreate />} />
             <Route path="/users/edit/:id" element={<UsersEdit />} />
             <Route path="/roles" element={<Roles />} />

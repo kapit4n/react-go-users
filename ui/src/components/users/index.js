@@ -9,6 +9,7 @@ export default function Index({ columns, data, onDelete }) {
         addLabel={"Add Users"} 
         addRoute="/users/create" model={"Users"} 
         editRoute={"/users/edit/"}
+        detailsRoute={"/users/"}
         onDelete={onDelete}
       />
     </>
