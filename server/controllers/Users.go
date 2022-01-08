@@ -99,3 +99,23 @@ func UsersCountFunc(c *gin.Context) int {
 func UsersCount(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"count": UsersCountFunc(c)})
 }
+
+func ActionsList(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"actions": []string{
+		CREATE_ACTION_TYPE, UPDATE_ACTION_TYPE,
+		DELETE_ACTION_TYPE, DETAILS_ACTION_TYPE, LIST_ACTION_TYPE,
+	}})
+}
+
+func ModelsList(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"actions": []string{
+		PERMISSION_MODEL, ROLE_MODEL,
+		USER_MODEL,
+	}})
+}
+
+func CheckPermission(model string, action string, userId int) bool {
+	// review on db the role asigned to user
+	// and review if in the role there is the model action
+	return true
+}

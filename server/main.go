@@ -35,6 +35,9 @@ func main() {
 	r.PUT("/users/:id", controllers.UsersUpdate)
 	r.GET("/users/count", controllers.UsersCount)
 
+	r.GET("/constants/actions", controllers.ActionsList)
+	r.GET("/constants/models", controllers.ModelsList)
+
 	r.GET("/summary/count", controllers.CountAll)
 
 	r.POST("/login", controllers.Login)
