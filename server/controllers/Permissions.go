@@ -3,6 +3,7 @@ package controllers
 import (
 	"net/http"
 	"server/models"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -34,6 +35,23 @@ func PermissionCreate(c *gin.Context) {
 	models.DB.Save(&permission)
 
 	c.JSON(http.StatusOK, gin.H{"data": permission})
+}
+
+func PermissionDelete(c *gin.Context) {
+	id := c.Param("id")
+
+	if _, err := strconv.Atoi(id); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Id not valid"})
+		return
+	}
+
+	err := models.DB.Delete(id).Error
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error to delete Permission"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "Successfull deleted"})
 }
 
 func PermissionsCountFunc(c *gin.Context) int {

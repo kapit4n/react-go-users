@@ -27,6 +27,7 @@ func main() {
 	r.GET("/permissions", controllers.PermissionsList)
 	r.POST("/permissions", controllers.PermissionCreate)
 	r.GET("/permissions/:id", controllers.PermissionsDetails)
+	r.DELETE("/permissions/:id", controllers.PermissionDelete)
 	r.GET("/permissions/count", controllers.PermissionsCount)
 
 	r.GET("/users", controllers.UsersList)
