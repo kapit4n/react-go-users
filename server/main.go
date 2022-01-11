@@ -38,6 +38,7 @@ func main() {
 	r.GET("/users/:id", controllers.UsersDetails)
 	r.POST("/users", controllers.UsersCreate)
 	r.PUT("/users/:id", controllers.UsersUpdate)
+	r.DELETE("/users/:id", controllers.UserDelete)
 	r.GET("/users/count", controllers.UsersCount)
 
 	r.GET("/constants/actions", controllers.ActionsList)

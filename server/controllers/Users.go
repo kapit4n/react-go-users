@@ -94,6 +94,16 @@ func UsersCreate(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": user})
 }
 
+func UserDelete(c *gin.Context) {
+	id := c.Param("id")
+	if err := models.DB.Delete(models.User{}, id).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Error to delete"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Successfully Delete"})
+}
+
 func UsersCountFunc(c *gin.Context) int {
 	var count int
 	models.DB.Model(&models.User{}).Count(&count)
