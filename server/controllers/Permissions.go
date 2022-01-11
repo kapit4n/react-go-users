@@ -37,6 +37,27 @@ func PermissionCreate(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": permission})
 }
 
+func PermissionUpdate(c *gin.Context) {
+	var permission models.Permission
+
+	id := c.Param("id")
+
+	if err := models.DB.Where("id = ?", id).First(&permission).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found"})
+		return
+	}
+
+	// Validate input
+	var input models.Permission
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+
+	models.DB.Model(&permission).Updates(input)
+
+	c.JSON(http.StatusOK, gin.H{"data": permission})
+}
+
 func PermissionDelete(c *gin.Context) {
 	id := c.Param("id")
 
@@ -45,7 +66,7 @@ func PermissionDelete(c *gin.Context) {
 		return
 	}
 
-	err := models.DB.Delete(id).Error
+	err := models.DB.Delete(models.Permission{}, id).Error
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error to delete Permission"})
