@@ -3,6 +3,7 @@ package controllers
 import (
 	"net/http"
 	"server/models"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -34,6 +35,20 @@ func RolesDetails(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": role})
+}
+
+func RoleDelete(c *gin.Context) {
+	id := c.Param("id")
+
+	if _, err := strconv.Atoi(id); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Id not valid"})
+		return
+	}
+
+	if err := models.DB.Delete(id).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error to delete"})
+		return
+	}
 }
 
 func RolesCountFunc(c *gin.Context) int {
