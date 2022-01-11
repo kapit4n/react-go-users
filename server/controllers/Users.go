@@ -20,7 +20,7 @@ func UsersDetails(c *gin.Context) {
 	var user models.User
 	id := c.Param("id")
 
-	err := models.DB.Find(&user, id).Error
+	err := models.DB.Preload("Role").Find(&user, id).Error
 
 	user.Password = ""
 
@@ -35,10 +35,10 @@ func UsersDetails(c *gin.Context) {
 func UsersUpdate(c *gin.Context) {
 	fmt.Println("ERROR")
 	var user models.User
-	var userToUpdate models.User
+	var input models.User
 	id := c.Param("id")
 
-	if err := c.BindJSON(&userToUpdate); err != nil {
+	if err := c.BindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request"})
 		return
 	}
@@ -48,21 +48,25 @@ func UsersUpdate(c *gin.Context) {
 		return
 	}
 
-	if &userToUpdate.Email != nil {
-		user.Email = userToUpdate.Email
+	if &input.Email != nil {
+		user.Email = input.Email
 	}
 
-	if &userToUpdate.FirstName != nil {
-		user.FirstName = userToUpdate.FirstName
+	if &input.FirstName != nil {
+		user.FirstName = input.FirstName
 	}
 
-	if &userToUpdate.LastName != nil {
-		user.LastName = userToUpdate.LastName
+	if &input.LastName != nil {
+		user.LastName = input.LastName
 	}
 
-	if &userToUpdate.Password != nil {
-		hashedPassword, _ := HashPassword(userToUpdate.Password)
+	if &input.Password != nil {
+		hashedPassword, _ := HashPassword(input.Password)
 		user.Password = hashedPassword
+	}
+
+	if &input.RoleId != nil {
+		user.RoleId = input.RoleId
 	}
 
 	if err := models.DB.Save(&user).Error; err != nil {
