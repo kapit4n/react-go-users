@@ -5,4 +5,6 @@ type Permission struct {
 	Name   string `json:"name"`
 	Model  string `json:"model"`
 	Action string `json:"action"`
+	RoleID uint   `json:"roleId"`
+	Role   Role   `gorm:"association_autoupdate:false;association_autocreate:false" json:"role"`
 }

@@ -21,6 +21,7 @@ func main() {
 
 	r.GET("/roles", controllers.RolesList)
 	r.POST("/roles", controllers.RolesCreate)
+	r.POST("/roles/:id/:permissionId", controllers.RoleAddPermission)
 	r.GET("/roles/:id", controllers.RolesDetails)
 	r.PATCH("/roles/:id", controllers.RoleUpdate)
 	r.DELETE("/roles/:id", controllers.RoleDelete)
