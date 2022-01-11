@@ -37,6 +37,32 @@ func RolesDetails(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": role})
 }
 
+func RoleUpdate(c *gin.Context) {
+	var role models.Role
+	var input models.Role
+	id := c.Param("id")
+
+	if _, err := strconv.Atoi(id); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request"})
+		return
+	}
+
+	if err := models.DB.Where("id = ?", id).First(&role).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request"})
+		return
+	}
+
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request"})
+		return
+	}
+
+	models.DB.Model(&role).Updates(input)
+
+	c.JSON(http.StatusOK, gin.H{"data": role})
+
+}
+
 func RoleDelete(c *gin.Context) {
 	id := c.Param("id")
 
@@ -45,10 +71,12 @@ func RoleDelete(c *gin.Context) {
 		return
 	}
 
-	if err := models.DB.Delete(id).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error to delete"})
+	if err := models.DB.Delete(models.Role{}, id).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Error to delete"})
 		return
 	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Successful deleted"})
 }
 
 func RolesCountFunc(c *gin.Context) int {
