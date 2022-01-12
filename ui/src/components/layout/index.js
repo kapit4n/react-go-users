@@ -3,12 +3,12 @@ import Navigation from './navigation'
 
 const Index =  ({ children }) => {
   return (
-    <>
+    <div>
       <Navigation />
-      <main>
+      <main className="container">
         {children}
       </main>
-    </>
+    </div>
   )
 }
 

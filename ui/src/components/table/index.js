@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import './index.css'
 
-export default function Index({ columns, data, model, addLabel, addRoute, editRoute, onDelete }) {
+export default function Index({ columns, data, model, addLabel, addRoute, editRoute, onDelete, detailsRoute, detailsLabel }) {
 
   const {
     getTableProps,
@@ -72,6 +72,9 @@ export default function Index({ columns, data, model, addLabel, addRoute, editRo
                 return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
               })}
               <td>
+                <Link to={`${detailsRoute}/${row.original.id}`}>
+                  <button className={"primary-button"}> {detailsLabel}</button>
+                </Link>
                 <Link to={editRoute + row.original.id}>
                   <button>Edit</button>
                 </Link>
