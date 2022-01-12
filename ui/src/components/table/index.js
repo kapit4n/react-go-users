@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 
 import './index.css'
 
-export default function Index({ columns, data, model, addLabel, addRoute, editRoute, onDelete, detailsRoute, detailsLabel }) {
+export default function Index({ columns, data, model, addLabel, addRoute, 
+  editRoute, onDelete, detailsRoute, detailsLabel }) {
 
   const {
     getTableProps,
@@ -23,10 +24,10 @@ export default function Index({ columns, data, model, addLabel, addRoute, editRo
 
     if (answer) {
       onDelete(id)
-      console.log("Delete it.")
+      console.log("Deleted it.")
     }
     else {
-      console.log("Cancellet");
+      console.log("Cancelled");
     }
   }
 
