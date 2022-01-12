@@ -1,18 +1,17 @@
-.field-container {
+.details-field {
   display: flex;
-  justify-content: space-around;
-  justify-items: flex-end;
-  padding: 0.5rem;
-  box-shadow: 0 1px 0 0 grey;
-  width: 100%;
-  
+  box-shadow:  0 8px 6px -6px gray;
+  padding: 1rem 0;
+  width: 40rem;
+
 }
 
-.field-container .label {
+.details-field .label {
   font-weight: bolder;
-  width: 10rem;
-  text-align: right;
   margin-right: 1rem;
+  width: 10rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .field-container .value {
