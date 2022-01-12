@@ -8,10 +8,6 @@ import './details.css'
 
 export default function Edit({ data }) {
   let navigate = useNavigate();
-  console.log(data)
-  console.log(data)
-  console.log(data)
-  console.log(data)
 
   const onEdit = () => {
     navigate(`/permissions/edit/${data.id}`, { replace: true });
