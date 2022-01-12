@@ -33,7 +33,7 @@ export default function () {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<Users />} />
-            <Route path="/users/:id" element={<UsersDetails />} />
+            <Route path="/users/details/:id" element={<UsersDetails />} />
             <Route path="/users/create" element={<UsersCreate />} />
             <Route path="/users/edit/:id" element={<UsersEdit />} />
             <Route path="/roles" element={<Roles />} />

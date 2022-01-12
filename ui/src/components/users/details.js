@@ -2,26 +2,27 @@ import React from 'react'
 
 import './details.css'
 
+import {DetailsItem} from '../../components/common'
+import { useNavigate } from "react-router-dom";
+
 export default function ({ data }) {
+
+  let navigate = useNavigate();
+
+  const onEdit = () => {
+    navigate(`/users/edit/${data.id}`, { replace: true });
+  };
+
   return (
     <div className="users-details">
-      <h1>
-        USER DETAILS
-      </h1>
-      <div className="details-field">
-        <div className="label">First Name</div>
-        <div className="value">{data.firstName}</div>
+      <h1>USER DETAILS</h1>
+      <div className="actions">
+        <button className="primary-button" onClick={onEdit}>Edit</button>
+        <button className="danger-button">Delete</button>
       </div>
-      
-      <div className="details-field">
-        <div className="label">Last Name</div>
-        <div className="value">{data.lastName}</div>
-      </div>
-      
-      <div className="details-field">
-        <div className="label">Email</div>
-        <div className="value">{data.email}</div>
-      </div>
+      <DetailsItem value={data.firstName} label={"First Name"} />
+      <DetailsItem value={data.lastName} label={"Last Name"} />
+      <DetailsItem value={data.email} label={"Email"} />
       
     </div>
   )
