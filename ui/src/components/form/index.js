@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './index.css'
-
+import { useNavigate } from 'react-router-dom';
 export const FormInput = ({ children }) => {
 
   return (
@@ -11,12 +11,21 @@ export const FormInput = ({ children }) => {
 }
 
 const Index = ({ children, ...props }) => {
+
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
+
+  const goToPreviousPath = () => {
+    navigate.goBack()
+    setLoading(true)
+  }
+
   return (
     <form className="form" {...props}>
       {children}
       <div className="actions">
-        <button className="primary-button" type="submit">SAVE</button>
-        <button type="reset">CANCEL</button>
+        <button className="primary-button" type="submit" disabled={loading}>SAVE</button>
+        <button onClick={goToPreviousPath} disabled={loading}>CANCEL</button>
       </div>
     </form>
   )

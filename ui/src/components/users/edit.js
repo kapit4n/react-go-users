@@ -21,7 +21,7 @@ export default function Edit({data, onUpdate}) {
   }, [data])
 
   return (
-    <div className="container-edit">
+    <div className="container">
       <h1>EDIT USER</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <CommonFields register={register}/>

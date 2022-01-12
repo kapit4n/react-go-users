@@ -19,7 +19,7 @@ const CommonFields = ({register}) => {
         </FormInput>
         <FormInput>
           <label htmlFor="password">Password</label>
-          <input {...register("password", {required: "Please enter your Password."})} type="password"/>
+          <input {...register("password")} type="password"/>
         </FormInput>
     </>
   )

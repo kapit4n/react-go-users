@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import './create.css'
 
-import Form, { FormInput } from '../form'
+import Form from '../form'
 import CommonFields from './common-fields'
 
 export default function Edit({data}) {
@@ -16,6 +16,7 @@ export default function Edit({data}) {
   };
 
   useEffect(() => {
+    
     reset(data)
   }, [data])
 
