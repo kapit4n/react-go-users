@@ -11,6 +11,7 @@ import Roles from './pages/roles'
 import Permissions from './pages/permissions'
 import PermissionsCreate from './pages/permissions/create'
 import PermissionsEdit from './pages/permissions/edit'
+import PermissionsDetails from './pages/permissions/details'
 import About from './pages/about'
 import Home from './pages/home'
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
@@ -40,6 +41,7 @@ export default function () {
             <Route path="/permissions" element={<Permissions />} />
             <Route path="/permissions/create" element={<PermissionsCreate />} />
             <Route path="/permissions/edit/:id" element={<PermissionsEdit />} />
+            <Route path="/permissions/details/:id" element={<PermissionsDetails />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </Layout>

@@ -17,7 +17,7 @@ export default function Create({onCreate}) {
   };
 
   return (
-    <div className="container">
+    <div className="container-create">
       <h1>CREATE NEW PERMISSION</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <CommonFields register={register}/>

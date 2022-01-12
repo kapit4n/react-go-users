@@ -1,0 +1,20 @@
+.field-container {
+  display: flex;
+  justify-content: space-around;
+  justify-items: flex-end;
+  padding: 0.5rem;
+  box-shadow: 0 1px 0 0 grey;
+  width: 100%;
+  
+}
+
+.field-container .label {
+  font-weight: bolder;
+  width: 10rem;
+  text-align: right;
+  margin-right: 1rem;
+}
+
+.field-container .value {
+  width: 20rem;
+}

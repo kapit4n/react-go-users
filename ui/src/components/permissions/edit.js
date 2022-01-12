@@ -20,7 +20,7 @@ export default function Edit({data}) {
   }, [data])
 
   return (
-    <div className="container">
+    <div className="container-edit">
       <h1>EDIT PERMISSION</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <CommonFields register={register}/>
