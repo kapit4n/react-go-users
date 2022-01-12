@@ -1,21 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 
-import EditRole from '../../components/permissions/edit'
+import EditPermission from '../../components/permissions/edit'
 import { useParams } from "react-router-dom";
-import Data from '../../data'
+import axios from 'axios';
 
 const Edit = () => {
   const { id } = useParams();
 
   const [editData, setEditData] = useState()
 
-  useEffect(() => {
-    const res = Data.permissions.find(x => x.id == id)
-    setEditData(res)
-  }, [id])
+  useEffect(async() => {
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/permissions/${id}`)
+    setEditData(res.data.data)
+  }, [])
+
+  const updatePermission = useCallback((data) => {
+    axios.patch(`${process.env.REACT_APP_API_URL}/permissions/${id}`, data)
+  })
 
   return (
-    <EditRole data={editData}/>
+    <EditPermission data={editData} updatePermission={updatePermission}/>
   )
 }
 
