@@ -9,7 +9,9 @@ export default function Index({ columns, data }) {
     <Table columns={columns} data={data} 
       addLabel={"Add Role"} model={"Roles"}
       addLabel="Add Roles" addRoute="/roles/create"
-      editRoute="/roles/edit/"/>
+      detailsLabel="Details" detailsRoute="/roles/details"
+      editRoute="/roles/edit/"
+      />
    </>
   )
 }

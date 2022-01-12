@@ -1,0 +1,12 @@
+.container-details {
+  display: flex;
+}
+
+.actions {
+  box-shadow: 0 1px 0 0 grey;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0;
+  margin-right: 0;
+}

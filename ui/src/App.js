@@ -6,6 +6,7 @@ import UsersDetails from './pages/users/details'
 import UsersCreate from './pages/users/create'
 import RolesCreate from './pages/roles/create'
 import RolesEdit from './pages/roles/edit'
+import RolesDetails from './pages/roles/details'
 import UsersEdit from './pages/users/edit'
 import Roles from './pages/roles'
 import Permissions from './pages/permissions'
@@ -38,6 +39,7 @@ export default function () {
             <Route path="/roles" element={<Roles />} />
             <Route path="/roles/create" element={<RolesCreate />} />
             <Route path="/roles/edit/:id" element={<RolesEdit />} />
+            <Route path="/roles/details/:id" element={<RolesDetails />} />
             <Route path="/permissions" element={<Permissions />} />
             <Route path="/permissions/create" element={<PermissionsCreate />} />
             <Route path="/permissions/edit/:id" element={<PermissionsEdit />} />
