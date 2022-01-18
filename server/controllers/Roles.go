@@ -27,7 +27,7 @@ func RolesDetails(c *gin.Context) {
 	var role models.Role
 	id := c.Param("id")
 
-	err := models.DB.Preload("Permissions").Find(&role, id).Error
+	err := models.DB.Preload("Permissions").Preload("Permissions.Permission").Find(&role, id).Error
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Error to get the role"})
