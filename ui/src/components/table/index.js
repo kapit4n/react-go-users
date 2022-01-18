@@ -20,7 +20,7 @@ export default function Index({ columns, data, model, addLabel, addRoute,
   })
 
   const onDeleteWrap = async (id) => {
-    const answer = window.confirm("Save data?");
+    const answer = window.confirm("Do you want to delete?");
 
     if (answer) {
       onDelete(id)
