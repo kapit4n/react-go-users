@@ -84,6 +84,7 @@ func RoleAddPermission(c *gin.Context) {
 	permissionId := c.Param("permissionId")
 	var role models.Role
 	var permission models.Permission
+	var roleDetail models.RoleDetail
 
 	if err := models.DB.Where("id = ?", id).First(&role).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request role not found"})
@@ -94,11 +95,25 @@ func RoleAddPermission(c *gin.Context) {
 		return
 	}
 
-	if err := models.DB.Model(&role).Association("Permissions").Append(permission).Error; err != nil {
+	roleDetail = models.RoleDetail{RoleID: role.ID, PermissionID: permission.ID}
+
+	if err := models.DB.Create(&roleDetail).Error; err != nil {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Permission added to role"})
+	c.JSON(http.StatusOK, gin.H{"message": "Permission and role relation created"})
+}
+
+func RoleDeletePermission(c *gin.Context) {
+	id := c.Param("id")
+	permissionId := c.Param("permissionId")
+
+	if err := models.DB.Where("roleId=? AND permissionId=?", id, permissionId).Delete(&models.RoleDetail{}).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Not found record"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Relation with role and permisson deleted"})
 }
 
 func RolesCountFunc(c *gin.Context) int {

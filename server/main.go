@@ -22,6 +22,7 @@ func main() {
 	r.GET("/roles", controllers.RolesList)
 	r.POST("/roles", controllers.RolesCreate)
 	r.POST("/roles/:id/:permissionId", controllers.RoleAddPermission)
+	r.DELETE("/roles/:id/:permissionId", controllers.RoleDeletePermission)
 	r.GET("/roles/:id", controllers.RolesDetails)
 	r.PATCH("/roles/:id", controllers.RoleUpdate)
 	r.DELETE("/roles/:id", controllers.RoleDelete)
@@ -46,7 +47,6 @@ func main() {
 
 	r.GET("/summary/count", controllers.CountAll)
 
-	r.POST("/login", controllers.Login)
 	r.GET("/logout", controllers.Logout)
 
 	r.Run(":8080")
