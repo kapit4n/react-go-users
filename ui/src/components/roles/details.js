@@ -42,7 +42,7 @@ export default function Detail({ data, onRemoveRelation, onAddRelation }) {
 
       <Modal isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
-        contextLabel="Add permissions cc"
+        contextLabel="Add permissions"
       >
         <ul>
           {permissions && permissions.map((p) => <li key={p.id}>{p.name} <button onClick={() => onAddRelation(p.id)}>Add</button> </li>)}

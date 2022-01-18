@@ -90,7 +90,7 @@ func RoleAddPermission(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request role not found"})
 		return
 	}
-	if err := models.DB.Where(models.Permission{}, "id = ?", permissionId).First(&permission).Error; err != nil {
+	if err := models.DB.Where("id = ?", permissionId).First(&permission).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request permission not found"})
 		return
 	}
