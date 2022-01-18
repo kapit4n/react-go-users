@@ -17,6 +17,7 @@ func ConnectionDataBase() {
 	database.AutoMigrate(&User{})
 	database.AutoMigrate(&Permission{})
 	database.AutoMigrate(&Role{})
+	database.AutoMigrate(&RoleDetail{})
 
 	DB = database
 }
