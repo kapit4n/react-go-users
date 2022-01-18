@@ -108,7 +108,7 @@ func RoleDeletePermission(c *gin.Context) {
 	id := c.Param("id")
 	permissionId := c.Param("permissionId")
 
-	if err := models.DB.Where("roleId=? AND permissionId=?", id, permissionId).Delete(&models.RoleDetail{}).Error; err != nil {
+	if err := models.DB.Where("role_id = ? AND permission_id = ?", id, permissionId).Delete(&models.RoleDetail{}).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Not found record"})
 		return
 	}
