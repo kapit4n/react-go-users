@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 
 import { useParams } from "react-router-dom";
 import axios from 'axios';
@@ -24,12 +24,16 @@ export function WithFetch ({ uri, DetailsComponent, moreProps }) {
 
   const [detailsData, setDetailsData] = useState({})
 
-  useEffect(async () => {
+  const fetchit = useCallback(async () => {
     const res = await axios.get(`${process.env.REACT_APP_API_URL}/${uri}/${id}`)
     setDetailsData(res.data.data)
   }, [id])
 
+  useEffect(async () => {
+    fetchit()
+  }, [fetchit])
+
   return (
-    <DetailsComponent data={detailsData} {...moreProps}/>
+    <DetailsComponent data={detailsData} {...moreProps} refetch={fetchit}/>
   )
 }
