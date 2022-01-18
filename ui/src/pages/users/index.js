@@ -28,11 +28,12 @@ export default function Index() {
     ]
   )
 
-  const { data, status } = useQuery("users", fetchUsers)
+  const { data, status, refetch } = useQuery("users", fetchUsers)
 
 
   const onDelete = useCallback(async (id) => {
-    axios.delete(`${process.env.REACT_APP_API_URL}/users`, id)
+    await axios.delete(`${process.env.REACT_APP_API_URL}/users/${id}`)
+    refetch()
   })
 
   return (
