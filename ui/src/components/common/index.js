@@ -19,7 +19,7 @@ export function DetailsItem({ label, value }) {
 }
 
 
-export function WithFetch ({ uri, DetailsComponent }) {
+export function WithFetch ({ uri, DetailsComponent, moreProps }) {
   const { id } = useParams();
 
   const [detailsData, setDetailsData] = useState({})
@@ -30,6 +30,6 @@ export function WithFetch ({ uri, DetailsComponent }) {
   }, [id])
 
   return (
-    <DetailsComponent data={detailsData} />
+    <DetailsComponent data={detailsData} {...moreProps}/>
   )
 }
